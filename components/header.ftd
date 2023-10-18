@@ -1,0 +1,20 @@
+-- import: country-details/components/card
+
+-- component header:
+
+-- ftd.column:
+background.solid: #fff
+width: fill-container
+padding-vertical.rem: 1
+padding-horizontal.rem: 2
+shadow: $card.default-card-shadow
+
+-- ftd.text: Where in the world?
+style: bold
+cursor: pointer
+role: $inherited.types.heading-small
+link: /
+
+-- end: ftd.column
+
+-- end: header
