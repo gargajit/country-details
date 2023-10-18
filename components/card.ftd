@@ -1,0 +1,93 @@
+-- import: country-details/models
+
+-- component country-card:
+caption models.country country:
+optional ftd.shadow shadow:
+boolean $is-hovered: false
+
+-- ftd.column:
+width.fixed.px: 260
+height.fixed.px: 375
+overflow: auto
+border-radius.rem: 0.5
+margin.rem: 2
+cursor: pointer
+border-width.px: 1
+border-color: #dedede
+shadow: $default-card-shadow
+shadow if { country-card.is-hovered }: $hovered-card-shadow
+$on-mouse-enter$: $ftd.set-bool( $a = $country-card.is-hovered, v = true )
+$on-mouse-leave$: $ftd.set-bool( $a = $country-card.is-hovered, v = false )
+
+-- ftd.image:
+src: $country-card.country.flags.svg
+width: fill-container
+height.fixed.percent: 50
+
+-- ftd.column:
+padding.rem: 1
+spacing.fixed.rem: 0.5
+width: fill-container
+border-color: #dedede
+height: hug-content
+border-top-width.px: 1
+
+-- ftd.text: $country-card.country.name.common
+style: bold
+role: $inherited.types.copy-regular
+
+-- ftd.row:
+spacing.fixed.rem: 1
+
+-- ftd.column:
+spacing.fixed.rem: 0.5
+
+-- ftd.text: Population:
+role: $inherited.types.label-large
+style: semi-bold
+
+-- ftd.text: Region:
+role: $inherited.types.label-large
+style: semi-bold
+
+-- ftd.text: Capital:
+if: { len(country-card.country.capital) > 0 }
+style: semi-bold
+role: $inherited.types.label-large
+
+-- end: ftd.column
+
+-- ftd.column:
+spacing.fixed.rem: 0.5
+
+-- ftd.integer: $country-card.country.population
+role: $inherited.types.label-large
+
+-- ftd.text: $country-card.country.region
+role: $inherited.types.label-large
+
+-- ftd.text: $capital-name
+style: bold
+role: $inherited.types.label-large
+for: $capital-name, $index in $country-card.country.capital
+
+-- end: ftd.column
+
+-- end: ftd.row
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: country-card
+
+
+-- ftd.shadow default-card-shadow:
+color: #efefef
+blur.px: 5
+spread.rem: 0.2
+
+-- ftd.shadow hovered-card-shadow:
+color: #d5e3db
+blur.px: 5
+spread.rem: 0.2
